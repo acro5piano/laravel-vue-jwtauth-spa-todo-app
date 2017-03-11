@@ -1,17 +1,21 @@
 <template>
-    <div>
+  <div>
+    <p v-if="tasks.length === 0">
       please <router-link to="/login">Login.</router-link>
+    </p>
 
-      <div v-for="task in tasks">
+    <div v-else>
+      <ul v-for="task in tasks">
         <li> {{ task.title }} </li>
-      </div>
+      </ul>
     </div>
+  </div>
 </template>
 
 <script>
   export default {
     created() {
-      this.fetchArticles()
+      this.fetchTasks()
     },
     data() {
       return {
@@ -19,12 +23,10 @@
       }
     },
     methods: {
-      fetchArticles() {
-        this.$http.get('/api/tasks')
-          .then(res =>  {
-            console.log(res)
-            this.tasks = res.data
-          })
+      fetchTasks() {
+        this.$http.get('tasks', res => {
+          this.tasks = res.data
+        })
       }
     }
   }

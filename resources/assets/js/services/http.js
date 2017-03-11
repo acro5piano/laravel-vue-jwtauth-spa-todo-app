@@ -37,7 +37,7 @@ export const http = {
 
     // Intercept the request to make sure the token is injected into the header.
     axios.interceptors.request.use(config => {
-      // config.headers.Authorization = `Bearer ${ls.get('jwt-token')}`
+      config.headers.Authorization = `Bearer ${localStore('jwt-token')}`
       return config
     })
 
@@ -46,7 +46,7 @@ export const http = {
       // …get the token from the header or response data if exists, and save it.
       const token = response.headers['Authorization'] || response.data['token']
       if (token) {
-        // ls.set('jwt-token', token)
+        localStore('jwt-token', token)
       }
 
       return response

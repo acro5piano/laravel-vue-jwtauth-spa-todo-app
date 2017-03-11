@@ -30,7 +30,7 @@ window.axios = require('axios');
 window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
     'X-Requested-With': 'XMLHttpRequest',
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ4OTIxNjk1NCwiZXhwIjoxNDg5MjIwNTU0LCJuYmYiOjE0ODkyMTY5NTQsImp0aSI6ImQ4Y2I1OTlkMTAxMjM4ODdhYTU0MGI4MWY1NGJjNzhmIn0.6og8XVoJJofXWd62iiNKL7phHjWjzR7vBDWMZxV_ts4',
+    'Authorization': '',
 };
 
 /**

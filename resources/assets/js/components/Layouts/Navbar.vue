@@ -19,7 +19,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><router-link  to="/about">About</router-link></li>
 
-          <li class="dropdown">
+          <li class="dropdown" v-if="true">
             <a href="#" class="dropdown-toggle"
                data-toggle="dropdown"
                role="button" aria-haspopup="true" aria-expanded="false">
@@ -27,8 +27,11 @@
                <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><router-link  to="/logout">Log out</router-link></li>
+              <li><a @click="logout">Log out</a></li>
             </ul>
+          </li>
+          <li v-if="true">
+            <router-link to="/login">Log in</router-link>
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
@@ -37,22 +40,27 @@
 </template>
 
 <script>
+  import localStore from 'local-storage'
+
   export default {
     created() {
       this.getUser()
     },
     data() {
       return {
-        user: ''
+        user: {}
       }
     },
     methods: {
       getUser() {
-        return false
-        this.$http.get('/api/me')
-        .then(res =>  {
+        this.$http.get('me', res => {
           this.user = res.data.user
         })
+      },
+      logout() {
+        this.$http.get('logout')
+        localStore.remove('jwt-token')
+        this.$router.push('/login')
       }
     }
   }

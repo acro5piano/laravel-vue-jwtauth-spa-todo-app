@@ -17,7 +17,7 @@
               <label for="password" class="col-md-4 control-label">Password</label>
               <div class="form-group">
                 <div class="col-md-6">
-                  <input id="password" type="password" class="form-control" name="password" required autofocus>
+                  <input id="password" type="password" class="form-control" v-model="password" required autofocus>
                 </div>
               </div>
 
@@ -52,21 +52,20 @@
 </template>
 
 <script>
-  // import http from '../services'
+  import localStore from 'local-storage'
 
   export default {
     data() {
       return {
-        email: '',
-        password: ''
+        email: 'test@example.com',
+        password: 'password'
       }
     },
     methods: {
       login() {
-        // v-model
-        this.$http.post('authenticate', {email: 'test@example.com', password: 'password'}, res => {
-            console.log(res)
-        })
+        var login_param = {email: this.email, password: this.password}
+        this.$http.post('authenticate', login_param)
+        this.$router.push('/')
       }
     }
   }
