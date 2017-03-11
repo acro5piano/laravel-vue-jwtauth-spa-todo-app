@@ -3,11 +3,9 @@ import VueRouter from 'vue-router'
 
 import { http } from './services/http.js'
 
-
 require('./bootstrap')
 
 Vue.prototype.$http = http
-
 Vue.use(VueRouter)
 
 Vue.component('navbar', require('./components/Layouts/Navbar.vue'))
