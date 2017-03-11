@@ -10,7 +10,6 @@ class WelcomeController extends Controller
 {
     public function index(Request $request)
     {
-        $user = JWTAuth::parseToken()->authenticate();
-        return response()->json(compact('user'));
+        return response()->json([['id' => 1, 'title' => 'Vue.js', 'content' => 'hello']]);
     }
 }

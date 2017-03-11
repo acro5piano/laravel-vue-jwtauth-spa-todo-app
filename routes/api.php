@@ -13,12 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::group(['middleware' => 'api'], function () {
+Route::group(['middleware' => ['api', 'jwt.auth']], function () {
     Route::post('authenticate',  'AuthenticateController@authenticate');
-    Route::get('logout',  'AuthenticateController@logout')->middleware('jwt.refresh');
-    Route::get('index',  'WelcomeController@index')->middleware('jwt.auth');
+    Route::get('logout',  'AuthenticateController@logout');
+    Route::get('index',  'WelcomeController@index');
+    Route::get('me',  'AuthenticateController@getCurrentUser')->middleware('jwt.auth');
 });
