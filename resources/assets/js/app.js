@@ -1,7 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import { http } from './services/http.js'
+
+
 require('./bootstrap')
+
+Vue.prototype.$http = http
 
 Vue.use(VueRouter)
 
@@ -17,5 +22,8 @@ const router = new VueRouter({
 })
 
 const app = new Vue({
-    router
+    router,
+    created () {
+        http.init()
+    }
 }).$mount('#app')

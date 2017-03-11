@@ -33,8 +33,6 @@ window.axios.defaults.headers.common = {
     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ4OTIxNjk1NCwiZXhwIjoxNDg5MjIwNTU0LCJuYmYiOjE0ODkyMTY5NTQsImp0aSI6ImQ4Y2I1OTlkMTAxMjM4ODdhYTU0MGI4MWY1NGJjNzhmIn0.6og8XVoJJofXWd62iiNKL7phHjWjzR7vBDWMZxV_ts4',
 };
 
-Vue.prototype.$http = axios
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

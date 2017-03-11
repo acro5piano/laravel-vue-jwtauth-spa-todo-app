@@ -48,6 +48,7 @@
     },
     methods: {
       getUser() {
+        return false
         this.$http.get('/api/me')
         .then(res =>  {
           this.user = res.data.user
