@@ -2,13 +2,8 @@
     <div>
       please <router-link to="/login">Login.</router-link>
 
-      <div v-for="article in articles">
-        <h1>
-            <router-link :to="'/articles/' + article.id">{{ article.title }}</router-link>
-        </h1>
-        <p>
-            {{ article.content }}
-        </p>
+      <div v-for="task in tasks">
+        <li> {{ task.title }} </li>
       </div>
     </div>
 </template>
@@ -20,15 +15,15 @@
     },
     data() {
       return {
-        articles: [{title: 'About vue.js', id: 1, content: 'lorem ipsam'}]
+        tasks: []
       }
     },
     methods: {
       fetchArticles() {
-        this.$http.get('/api/index')
+        this.$http.get('/api/tasks')
           .then(res =>  {
             console.log(res)
-            this.articles = res.data
+            this.tasks = res.data
           })
       }
     }
