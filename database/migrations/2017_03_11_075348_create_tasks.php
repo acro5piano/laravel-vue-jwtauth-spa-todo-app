@@ -17,7 +17,7 @@ class CreateTasks extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->string('title');
-            $table->text('is_done')->default(0);
+            $table->boolean('is_done')->default(false);
 
             $table->timestamps();
         });

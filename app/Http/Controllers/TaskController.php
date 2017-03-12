@@ -13,26 +13,25 @@ class TaskController extends Controller
     public function index()
     {
         $user = JWTAuth::parseToken()->authenticate();
-        return $user->tasks()->get();
+        return $user->tasks()->get()->keyBy('id');
     }
 
     public function store(Request $request)
     {
-        $attr = $request->only('title');
         $user = JWTAuth::parseToken()->authenticate();
-        return $user->tasks()->create($attr);
+        // eval(\Psy\Sh());
+        return $user->tasks()->create($request->only('title'))->fresh();
     }
 
-    // public function destroy(Request $request)
-    // {
-    //     return $request->id;
-    // }
+    public function destroy($id)
+    {
+        return Task::destroy($id);
+    }
 
     public function update($id, Request $request)
     {
-        $task = Task::find($id);
-        $task->is_done = true;
+        $task = Task::find($id)->fill($request->only('is_done'));
         $task->save();
-        return $task;
+        return $task->fresh();
     }
 }

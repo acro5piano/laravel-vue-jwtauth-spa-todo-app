@@ -10,14 +10,16 @@
 
               <div class="form-group">
                 <div class="col-md-6">
-                  <input id="email" type="email" class="form-control" v-model="email" required autofocus>
+                  <input id="email" type="email" class="form-control"
+                         v-model="email" @keyup.enter="login" required autofocus>
                 </div>
               </div>
 
               <label for="password" class="col-md-4 control-label">Password</label>
               <div class="form-group">
                 <div class="col-md-6">
-                  <input id="password" type="password" class="form-control" v-model="password" required autofocus>
+                  <input id="password" type="password" class="form-control"
+                         v-model="password" @keyup.enter="login" required autofocus>
                 </div>
               </div>
 
