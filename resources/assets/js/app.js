@@ -2,10 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import { http } from './services/http.js'
+import { auth } from './services/auth.js'
 
 require('./bootstrap')
 
 Vue.prototype.$http = http
+Vue.prototype.$auth = auth
 Vue.use(VueRouter)
 
 Vue.component('navbar', require('./components/Navbar.vue'))
@@ -23,18 +25,13 @@ const app = new Vue({
   router,
   created () {
     http.init()
-    this.getCurrentUser()
+
+    // TODO: context として this を渡さない
+    auth.getCurrentUser(this)
   },
   data () {
     return {
       user: {}
     }
   },
-  methods: {
-    getCurrentUser () {
-      this.$http.get('me', res => {
-        this.user = res.data.user
-      })
-    }
-  }
 }).$mount('#app')
