@@ -19,12 +19,12 @@ And laravel-mix build all asset files.
 # Why Vue.js?
 
 Vue.js is one of modern JavaScript framework.
-It can be installed parialy, but its ecosystem enables us to make simple, lightweight, elegant SPA.
+It can be installed partialy, but its ecosystem enables us to make simple, lightweight, elegant SPA.
 
 - vue-router
 - axios
 
-More bigger appliction may need state management system such as `vuex`.
+Bigger appliction may need state management system such as `vuex`.
 
 
 # Why todo app?
