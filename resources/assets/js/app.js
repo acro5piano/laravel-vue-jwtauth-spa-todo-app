@@ -8,7 +8,7 @@ require('./bootstrap')
 Vue.prototype.$http = http
 Vue.use(VueRouter)
 
-Vue.component('navbar', require('./components/Layouts/Navbar.vue'))
+Vue.component('navbar', require('./components/Navbar.vue'))
 
 const router = new VueRouter({
   mode: 'history',
