@@ -1,3 +1,5 @@
+![](images/capture.png)
+
 # laravel-vue-jwtauth-spa-todo-app
 SPA Todo application with authentication using Lavavel 5.4 + Vue.js 2.2 + JWTAuth
 
