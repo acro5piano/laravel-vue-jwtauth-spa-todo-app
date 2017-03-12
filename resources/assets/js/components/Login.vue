@@ -47,6 +47,14 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        Users:
+        <ul v-for="user in users">
+          <li>{{ user.name }} - {{ user.email }}</li>
+        </ul>
+
+        <p>Password is 'secret' (demo only)</p>
+      </div>
     </div>
   </div>
 </template>
@@ -55,14 +63,18 @@
   import localStore from 'local-storage'
 
   export default {
+    created() {
+      this.fetchUsers()
+    },
     data() {
       return {
         email: 'test@example.com',
-        password: 'password'
+        password: 'secret',
+        users: [],
       }
     },
     methods: {
-      login() {
+      login () {
         var login_param = {email: this.email, password: this.password}
         this.$http.post('authenticate', login_param, res => {
           const token = res.data.token
@@ -72,8 +84,13 @@
           this.$parent.user = res.data.user
           this.$router.push('/')
         })
+      },
+      fetchUsers () {
+        this.$http.get('users', res => {
+          this.users = res.data.slice(0, 5)
+          this.email = res.data[0].email
+        })
       }
     }
   }
 </script>
-
