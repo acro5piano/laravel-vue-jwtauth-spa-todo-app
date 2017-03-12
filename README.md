@@ -29,7 +29,7 @@ Bigger appliction may need state management system such as `vuex`.
 
 # Why todo app?
 
-Login-enable Todo app is the basic of web technology.  It includes
+Login-enable Todo app require the basic of web technology.  It includes
 
 - RESTful routing
 - State Management (legacy session or JWTAuth, OAuth2, etc.)
