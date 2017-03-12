@@ -1,5 +1,4 @@
 import axios from 'axios'
-import localStore from 'local-storage'
 
 /**
  * Responsible for all HTTP requests.
@@ -37,17 +36,18 @@ export const http = {
 
     // Intercept the request to make sure the token is injected into the header.
     axios.interceptors.request.use(config => {
-      config.headers.Authorization = `Bearer ${localStore('jwt-token')}`
+      config.headers.Authorization = `Bearer ${localStorage.getItem('jwt-token')}`
       return config
     })
 
     // Intercept the response and…
     axios.interceptors.response.use(response => {
+      // 今は規模的に必要ないのでコメントアウトしておく
       // …get the token from the header or response data if exists, and save it.
-      const token = response.headers['Authorization'] || response.data['token']
-      if (token) {
-        localStore('jwt-token', token)
-      }
+      // const token = response.headers['Authorization'] || response.data['token']
+      // if (token) {
+      //   localStorage.setItem('jwt-token', token)
+      // }
 
       return response
     }, error => {

@@ -64,8 +64,14 @@
     methods: {
       login() {
         var login_param = {email: this.email, password: this.password}
-        this.$http.post('authenticate', login_param)
-        this.$router.push('/')
+        this.$http.post('authenticate', login_param, res => {
+          const token = res.data.token
+          if (token) {
+            localStorage.setItem('jwt-token', token)
+          }
+          this.$parent.user = res.data.user
+          this.$router.push('/')
+        })
       }
     }
   }

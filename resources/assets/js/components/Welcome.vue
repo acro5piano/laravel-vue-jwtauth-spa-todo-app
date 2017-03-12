@@ -5,6 +5,8 @@
     </p>
 
     <div v-else>
+      <strong>Hello, {{ $parent.user.name }}!</strong>
+      <p>Your tasks here.</p>
       <ul v-for="task in tasks">
         <li> {{ task.title }} </li>
       </ul>
@@ -23,11 +25,11 @@
       }
     },
     methods: {
-      fetchTasks() {
+      fetchTasks () {
         this.$http.get('tasks', res => {
           this.tasks = res.data
         })
-      }
+      },
     }
   }
 </script>

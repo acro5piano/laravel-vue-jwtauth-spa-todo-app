@@ -19,18 +19,18 @@
         <ul class="nav navbar-nav navbar-right">
           <li><router-link  to="/about">About</router-link></li>
 
-          <li class="dropdown" v-if="true">
+          <li class="dropdown" v-if="$parent.user.name">
             <a href="#" class="dropdown-toggle"
                data-toggle="dropdown"
                role="button" aria-haspopup="true" aria-expanded="false">
-               {{ user.name }}
+               {{ $parent.user.name }}
                <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li><a @click="logout">Log out</a></li>
             </ul>
           </li>
-          <li v-if="true">
+          <li v-else>
             <router-link to="/login">Log in</router-link>
           </li>
         </ul>
@@ -40,27 +40,15 @@
 </template>
 
 <script>
-  import localStore from 'local-storage'
 
   export default {
-    created() {
-      this.getUser()
-    },
-    data() {
-      return {
-        user: {}
-      }
-    },
     methods: {
-      getUser() {
-        this.$http.get('me', res => {
-          this.user = res.data.user
-        })
-      },
       logout() {
-        this.$http.get('logout')
-        localStore.remove('jwt-token')
-        this.$router.push('/login')
+        this.$http.get('logout', () => {
+          this.$parent.user = {}
+          localStorage.removeItem('jwt-token')
+          this.$router.push('/login')
+        })
       }
     }
   }
