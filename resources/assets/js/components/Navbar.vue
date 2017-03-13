@@ -43,6 +43,7 @@
 
   export default {
     methods: {
+      // TODO: services/auth.jsを使う
       logout() {
         this.$http.get('logout', () => {
           this.$parent.user = {}

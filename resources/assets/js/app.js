@@ -25,9 +25,10 @@ const app = new Vue({
   router,
   created () {
     http.init()
+    auth.init(this)
 
     // TODO: context として this を渡さない
-    auth.getCurrentUser(this)
+    auth.getCurrentUser()
   },
   data () {
     return {
