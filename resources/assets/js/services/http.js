@@ -3,7 +3,7 @@ import axios from 'axios'
 /**
  * Responsible for all HTTP requests.
  */
-export const http = {
+export default {
   request (method, url, data, successCb = null, errorCb = null) {
     axios.request({
       url,

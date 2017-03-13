@@ -62,7 +62,8 @@
 </template>
 
 <script>
-  import localStore from 'local-storage'
+  import auth from '../services/auth'
+  import http from '../services/http'
 
   export default {
     created() {
@@ -77,18 +78,10 @@
     },
     methods: {
       login () {
-        var login_param = {email: this.email, password: this.password}
-        this.$http.post('authenticate', login_param, res => {
-          const token = res.data.token
-          if (token) {
-            localStorage.setItem('jwt-token', token)
-          }
-          this.$parent.user = res.data.user
-          this.$router.push('/')
-        })
+        auth.login(this.email, this.password)
       },
       fetchUsers () {
-        this.$http.get('users', res => {
+        http.get('users', res => {
           this.users = res.data.slice(0, 5)
           this.email = res.data[0].email
         })

@@ -19,7 +19,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><router-link  to="/about">About</router-link></li>
 
-          <li class="dropdown" v-if="$parent.user.name">
+          <li class="dropdown" v-if="$parent.authenticated">
             <a href="#" class="dropdown-toggle"
                data-toggle="dropdown"
                role="button" aria-haspopup="true" aria-expanded="false">
@@ -40,16 +40,12 @@
 </template>
 
 <script>
+  import auth from '../services/auth'
 
   export default {
     methods: {
-      // TODO: services/auth.jsを使う
       logout() {
-        this.$http.get('logout', () => {
-          this.$parent.user = {}
-          localStorage.removeItem('jwt-token')
-          this.$router.push('/login')
-        })
+        auth.logout()
       }
     }
   }

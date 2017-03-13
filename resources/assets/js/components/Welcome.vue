@@ -19,6 +19,9 @@
       </ul>
 
       <div class="form-group">
+        <div class="alert alert-danger" role="alert" v-if="show_alert">
+          {{ alert_message }}
+        </div>
         <input type="text" class="form-control"
             v-model="title" @keyup.enter="addTask">
         <button class="btn btn-primary" @click='addTask'>Add task</button>
@@ -28,6 +31,8 @@
 </template>
 
 <script>
+  import http from '../services/http'
+
   export default {
     created() {
       this.fetchTasks()
@@ -36,28 +41,37 @@
       return {
         tasks: [],
         title: '',
+        show_alert: false,
+        alert_message: '',
       }
     },
     methods: {
       fetchTasks () {
-        this.$http.get('tasks', res => {
+        http.get('tasks', res => {
           this.tasks = res.data
         })
       },
       addTask () {
-        this.$http.post('tasks', {title: this.title}, res => {
+        if (this.title === '') {
+          this.show_alert = true
+          this.alert_message = 'Task name should not be blank.'
+          return false
+        }
+        http.post('tasks', {title: this.title}, res => {
           this.tasks[res.data.id] = res.data
           this.title = ''
+          this.show_alert = false
+          this.alert_message = ''
         })
       },
       completeTask (task) {
-        this.$http.put('tasks/' + task.id, {is_done: !task.is_done}, res => {
+        http.put('tasks/' + task.id, {is_done: !task.is_done}, res => {
           this.tasks[task.id] = res.data
           this.$forceUpdate()
         })
       },
       removeTask (task) {
-        this.$http.delete('tasks/' + task.id, {}, () => {
+        http.delete('tasks/' + task.id, {}, () => {
           delete this.tasks[task.id]
           this.$forceUpdate()
         })
