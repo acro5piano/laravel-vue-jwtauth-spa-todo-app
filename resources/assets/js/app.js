@@ -5,7 +5,8 @@ import http from './services/http.js'
 import userStore from './stores/user'
 import router from './router'
 
-require('./bootstrap')
+require('bootstrap-sass')
+
 Vue.use(VueRouter)
 
 Vue.component('navbar', require('./components/Navbar.vue'))

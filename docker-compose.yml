@@ -25,10 +25,10 @@ services:
   #   image: "mysql:5.6"
   #   environment:
   #     TZ: Asia/Tokyo
-  #     MYSQL_ROOT_PASSWORD: infra
-  #     MYSQL_DATABASE: infra
-  #     MYSQL_USER: infra
-  #     MYSQL_PASSWORD: infra
+  #     MYSQL_ROOT_PASSWORD: test
+  #     MYSQL_DATABASE: test
+  #     MYSQL_USER: test
+  #     MYSQL_PASSWORD: test
   #     MYSQL_HOST: ""
   #   ports:
   #     - "3306:3306"
@@ -37,10 +37,10 @@ services:
   #   image: "mysql:5.6"
   #   environment:
   #     TZ: Asia/Tokyo
-  #     MYSQL_ROOT_PASSWORD: infra
-  #     MYSQL_DATABASE: infra
-  #     MYSQL_USER: infra
-  #     MYSQL_PASSWORD: infra
+  #     MYSQL_ROOT_PASSWORD: test
+  #     MYSQL_DATABASE: test
+  #     MYSQL_USER: test
+  #     MYSQL_PASSWORD: test
   #     MYSQL_HOST: ""
   #   ports:
   #     - "13306:3306"
@@ -51,7 +51,7 @@ services:
   #     - "1080:1080"
   #   environment:
   #     TZ: Asia/Tokyo
-  #
+
   # redis:
   #   image: redis:3
   #   environment:

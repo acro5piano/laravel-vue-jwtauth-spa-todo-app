@@ -14,7 +14,8 @@
         <li v-else>
           {{ task.title }}
         </li>
-        <button @click="completeTask(task)" class="btn btn-sm btn-success">Done</button>
+        <button @click="completeTask(task)" class="btn btn-sm btn-success" v-if="task.is_done">Undo</button>
+        <button @click="completeTask(task)" class="btn btn-sm btn-success" v-else>Done</button>
         <button @click="removeTask(task)" class="btn btn-sm btn-danger">Remove</button>
       </ul>
 
