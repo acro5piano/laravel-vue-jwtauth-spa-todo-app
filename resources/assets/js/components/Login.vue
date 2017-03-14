@@ -62,7 +62,7 @@
 </template>
 
 <script>
-  import auth from '../services/auth'
+  import userStore from '../stores/user'
   import http from '../services/http'
 
   export default {
@@ -78,7 +78,7 @@
     },
     methods: {
       login () {
-        auth.login(this.email, this.password)
+        userStore.login(this.email, this.password)
       },
       fetchUsers () {
         http.get('users', res => {

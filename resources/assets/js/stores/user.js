@@ -1,6 +1,12 @@
-import http from './http'
+import http from '../services/http'
 
 export default {
+  debug: true,
+  state: {
+    user: {},
+    authenticated: false,
+  },
+
   login (email, password) {
     var login_param = {email: email, password: password}
     http.post('authenticate', login_param, res => {
@@ -8,34 +14,33 @@ export default {
       if (token) {
         localStorage.setItem('jwt-token', token)
       }
-      this.context.user = res.data.user
-      this.context.authenticated = true
-      this.context.$router.push('/')
+      this.state.user = res.data.user
+      this.state.authenticated = true
+      this.router.push('/')
     })
   },
 
   // To log out, we just need to remove the token
-  logout() {
+  logout () {
     http.get('logout', () => {
       localStorage.removeItem('id_token')
-      this.context.authenticated = false
-      this.context.$forceUpdate()
-      this.context.$router.push('/login')
+      this.state.authenticated = false
+      this.router.push('/login')
     })
   },
 
-  getCurrentUser () {
+  setCurrentUser () {
     http.get('me', res => {
-      this.context.user = res.data.user
-      this.context.authenticated = true
+      this.state.user = res.data.user
+      this.state.authenticated = true
     })
   },
 
   /**
    * Init the service.
    */
-  init (context) {
-    this.context = context
-    this.getCurrentUser()
+  init (router) {
+    this.router = router
+    this.setCurrentUser()
   }
 }

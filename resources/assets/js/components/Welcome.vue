@@ -1,11 +1,11 @@
 <template>
   <div>
-    <p v-if="$parent.user.name == undefined">
+    <p v-if="! userState.authenticated">
       please <router-link to="/login">Login.</router-link>
     </p>
 
     <div v-else>
-      <strong>Hello, {{ $parent.user.name }}!</strong>
+      <strong>Hello, {{ userState.user.name }}!</strong>
       <p>Your tasks here.</p>
       <ul v-for="task in tasks">
         <li v-if="task.is_done">
@@ -32,13 +32,15 @@
 
 <script>
   import http from '../services/http'
+  import userStore from '../stores/user'
 
   export default {
-    created() {
+    mounted() {
       this.fetchTasks()
     },
     data() {
       return {
+        userState: userStore.state,
         tasks: [],
         title: '',
         show_alert: false,
