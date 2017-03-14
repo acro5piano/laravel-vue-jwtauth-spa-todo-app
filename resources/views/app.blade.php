@@ -8,6 +8,7 @@
         <title>Laravel</title>
 
         <!-- TODO: アセットちゃんとやる -->
+        <link rel="stylesheet" href="dist/css/app.css"></script>
         <link rel="stylesheet" href="css/app.css"></script>
 
         <script>
@@ -23,6 +24,6 @@
             </div>
         </div>
     </body>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'></script>
+    <script src="dist/js/app.js"></script>
     <script src="js/app.js"></script>
 </html>
