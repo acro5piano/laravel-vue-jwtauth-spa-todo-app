@@ -11,8 +11,7 @@ RUN yes | pecl install xdebug \
 RUN curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer
 
-RUN composer global require fxp/composer-asset-plugin:~1.3@dev
 RUN composer global require hirak/prestissimo:^0.3
 
 WORKDIR /app
-CMD php -S 0.0.0.0:8080 -t public
+CMD php -S 0.0.0.0:8000 -t public
