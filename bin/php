@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eux
+
+if docker-compose ps | grep web_ | grep -q Up; then
+    docker-compose exec web php $@
+else
+    docker-compose run --rm web php $@
+fi

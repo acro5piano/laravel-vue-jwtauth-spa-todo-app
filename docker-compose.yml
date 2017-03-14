@@ -1,0 +1,58 @@
+version: "2"
+services:
+  web:
+    build: docker/web
+    environment:
+      TZ: Asia/Tokyo
+    # links:
+    #   - db
+    #   - test_db
+    #   - mail
+    #   - redis
+    volumes:
+      - ./:/app
+    ports:
+      - "8000:8000"
+
+  nodejs:
+    build: ./docker/nodejs
+    volumes:
+      - ./:/app
+    environment:
+      TZ: Asia/Tokyo
+
+  # db:
+  #   image: "mysql:5.6"
+  #   environment:
+  #     TZ: Asia/Tokyo
+  #     MYSQL_ROOT_PASSWORD: infra
+  #     MYSQL_DATABASE: infra
+  #     MYSQL_USER: infra
+  #     MYSQL_PASSWORD: infra
+  #     MYSQL_HOST: ""
+  #   ports:
+  #     - "3306:3306"
+
+  # test_db:
+  #   image: "mysql:5.6"
+  #   environment:
+  #     TZ: Asia/Tokyo
+  #     MYSQL_ROOT_PASSWORD: infra
+  #     MYSQL_DATABASE: infra
+  #     MYSQL_USER: infra
+  #     MYSQL_PASSWORD: infra
+  #     MYSQL_HOST: ""
+  #   ports:
+  #     - "13306:3306"
+
+  # mail:
+  #   image: schickling/mailcatcher
+  #   ports:
+  #     - "1080:1080"
+  #   environment:
+  #     TZ: Asia/Tokyo
+  #
+  # redis:
+  #   image: redis:3
+  #   environment:
+  #     TZ: Asia/Tokyo

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -eux
+
+if docker-compose ps | grep nodejs_ | grep -q Up; then
+    docker-compose exec nodejs node $@
+else
+    docker-compose run --rm nodejs node $@
+fi
+
