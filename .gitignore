@@ -15,6 +15,5 @@ bootstrap/cache/*
 .env.php
 
 /public/fonts/
-/public/mix-manifest.json
 /public/css/app.css
 /public/js/app.js
