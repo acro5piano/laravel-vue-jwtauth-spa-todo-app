@@ -8,8 +8,11 @@
         <title>Laravel</title>
 
         <!-- TODO: アセットちゃんとやる -->
-        <link rel="stylesheet" href="dist/css/app.css"></script>
-        <link rel="stylesheet" href="css/app.css"></script>
+        @if (env('APP_ENV') === 'production')
+            <link rel="stylesheet" href="dist/css/app.css"></script>
+        @else
+            <link rel="stylesheet" href="css/app.css"></script>
+        @endif
 
         <script>
             window.Laravel = {};
@@ -24,6 +27,9 @@
             </div>
         </div>
     </body>
-    <script src="dist/js/app.js"></script>
-    <script src="js/app.js"></script>
+    @if (env('APP_ENV') === 'production')
+        <script src="dist/js/app.js"></script>
+    @else
+        <script src="js/app.js"></script>
+    @endif
 </html>
