@@ -14,7 +14,6 @@
     "local-storage": "^1.4.2",
     "lodash": "^4.16.2",
     "vue": "^2.0.1",
-    "vue-router": "^2.3.0",
-    "local-storage": "^1.4.2"
+    "vue-router": "^2.3.0"
   }
 }
