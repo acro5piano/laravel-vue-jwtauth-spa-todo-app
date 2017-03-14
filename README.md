@@ -46,7 +46,7 @@ cd laravel-vue-jwtauth-spa-todo-app
 composer install
 yarn install
 
-npm run dev
+yarn run watch
 cp .env.example .env
 php argisan key:generate
 php artisan migrate
