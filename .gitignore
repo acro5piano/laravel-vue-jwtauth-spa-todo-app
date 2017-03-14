@@ -9,7 +9,8 @@ bootstrap/compiled.php
 app/storage/
 
 # Laravel 5 & Lumen specific
-bootstrap/cache/
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
 .env.*.php
 .env.php
 
