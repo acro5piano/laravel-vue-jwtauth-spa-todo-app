@@ -1,6 +1,6 @@
 FROM node:latest
 
-# RUN npm install -g yarn
+RUN npm install -g yarn
 
 WORKDIR /app
-CMD npm run watch
+CMD yarn run watch
