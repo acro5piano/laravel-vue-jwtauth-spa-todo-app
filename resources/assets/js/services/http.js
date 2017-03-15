@@ -1,4 +1,5 @@
 import axios from 'axios'
+import event from '../utils/event'
 
 /**
  * Responsible for all HTTP requests.
@@ -36,6 +37,7 @@ export default {
 
     // Intercept the request to make sure the token is injected into the header.
     axios.interceptors.request.use(config => {
+      event.emit('spinner:start')
       config.headers['Authorization']    = `Bearer ${localStorage.getItem('jwt-token')}`
       config.headers['X-CSRF-TOKEN']     = window.Laravel.csrfToken
       config.headers['X-Requested-With'] = 'XMLHttpRequest'
@@ -44,6 +46,7 @@ export default {
 
     // Intercept the response and…
     axios.interceptors.response.use(response => {
+      event.emit('spinner:stop')
       // …get the token from the header or response data if exists, and save it.
       const token = response.headers['Authorization'] || response.data['token']
       if (token) {
@@ -52,6 +55,7 @@ export default {
 
       return response
     }, error => {
+      event.emit('spinner:stop')
       // Also, if we receive a Bad Request / Unauthorized error
       console.log(error)
       return Promise.reject(error)

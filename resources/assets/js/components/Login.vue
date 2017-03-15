@@ -70,7 +70,7 @@
   import http from '../services/http'
 
   export default {
-    created() {
+    mounted () {
       this.fetchUsers()
     },
     data() {

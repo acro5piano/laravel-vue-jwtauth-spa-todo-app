@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Vue TODO</title>
 
         <!-- TODO: アセットちゃんとやる -->
         @if (env('APP_ENV') === 'production')
@@ -21,16 +21,6 @@
     </head>
     <body>
         <div id="app">
-            <navbar></navbar>
-            <div class="container">
-                <router-view></router-view>
-            </div>
-            <hr>
-            <div class="container-fluid">
-                <a href="https://github.com/acro5piano/laravel-vue-jwtauth-spa-todo-app" target="_blank">
-                    <img src="https://image.flaticon.com/icons/svg/25/25231.svg" width="30" height="20">
-                </a>
-            </div>
         </div>
     </body>
 

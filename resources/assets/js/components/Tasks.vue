@@ -4,31 +4,25 @@
       <strong>Hello, {{ userState.user.name }}!</strong>
       <p>Your tasks here.</p>
 
-      <div v-if="loading" class="text-center">
-        <pulse-loader></pulse-loader>
-      </div>
+      <ul v-for="task in tasks">
+        <li v-if="task.is_done">
+          <strike> {{ task.title }} </strike>
+        </li>
+        <li v-else>
+          {{ task.title }}
+        </li>
+        <button @click="completeTask(task)" class="btn btn-sm btn-success" v-if="task.is_done">Undo</button>
+        <button @click="completeTask(task)" class="btn btn-sm btn-success" v-else>Done</button>
+        <button @click="removeTask(task)" class="btn btn-sm btn-danger">Remove</button>
+      </ul>
 
-      <div v-else>
-        <ul v-for="task in tasks">
-          <li v-if="task.is_done">
-            <strike> {{ task.title }} </strike>
-          </li>
-          <li v-else>
-            {{ task.title }}
-          </li>
-          <button @click="completeTask(task)" class="btn btn-sm btn-success" v-if="task.is_done">Undo</button>
-          <button @click="completeTask(task)" class="btn btn-sm btn-success" v-else>Done</button>
-          <button @click="removeTask(task)" class="btn btn-sm btn-danger">Remove</button>
-        </ul>
-
-        <div class="form-group">
-          <div class="alert alert-danger" role="alert" v-if="show_alert">
-            {{ alert_message }}
-          </div>
-          <input type="text" class="form-control"
-              v-model="title" @keyup.enter="addTask">
-          <button class="btn btn-primary" @click='addTask'>Add task</button>
+      <div class="form-group">
+        <div class="alert alert-danger" role="alert" v-if="show_alert">
+          {{ alert_message }}
         </div>
+        <input type="text" class="form-control"
+            v-model="title" @keyup.enter="addTask">
+        <button class="btn btn-primary" @click='addTask'>Add task</button>
       </div>
     </div>
 
@@ -58,7 +52,6 @@
         title: '',
         show_alert: false,
         alert_message: '',
-        loading: true,
       }
     },
     methods: {
@@ -66,7 +59,6 @@
         // TODO: not to send request when the user is not authenticated
         http.get('tasks', res => {
           this.tasks = res.data
-          this.loading = false
         })
       },
       addTask () {
