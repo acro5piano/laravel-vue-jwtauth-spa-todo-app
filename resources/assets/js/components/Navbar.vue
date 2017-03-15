@@ -17,7 +17,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><router-link  to="/about" data-toggle="collapse">About</router-link></li>
+          <li><router-link to="/about">About</router-link></li>
 
           <li class="dropdown" v-if="userState.authenticated">
             <a href="#" class="dropdown-toggle"
