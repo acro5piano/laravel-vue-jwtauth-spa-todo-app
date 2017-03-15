@@ -1,10 +1,6 @@
 <template>
   <div>
-    <p v-if="! userState.authenticated">
-      please <router-link to="/login">Login.</router-link>
-    </p>
-
-    <div v-else>
+    <div v-if="userState.authenticated">
       <strong>Hello, {{ userState.user.name }}!</strong>
       <p>Your tasks here.</p>
       <ul v-for="task in tasks">
@@ -28,6 +24,11 @@
         <button class="btn btn-primary" @click='addTask'>Add task</button>
       </div>
     </div>
+
+    <p v-else>
+      please <router-link to="/login">Login.</router-link>
+    </p>
+
   </div>
 </template>
 
@@ -50,6 +51,7 @@
     },
     methods: {
       fetchTasks () {
+        // TODO: not to send request when the user is not authenticated
         http.get('tasks', res => {
           this.tasks = res.data
         })

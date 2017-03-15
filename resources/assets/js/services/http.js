@@ -44,12 +44,11 @@ export default {
 
     // Intercept the response and…
     axios.interceptors.response.use(response => {
-      // 今は規模的に必要ないのでコメントアウトしておく
       // …get the token from the header or response data if exists, and save it.
-      // const token = response.headers['Authorization'] || response.data['token']
-      // if (token) {
-      //   localStorage.setItem('jwt-token', token)
-      // }
+      const token = response.headers['Authorization'] || response.data['token']
+      if (token) {
+        localStorage.setItem('jwt-token', token)
+      }
 
       return response
     }, error => {
@@ -61,6 +60,7 @@ export default {
         // and we're not trying to login
         if (!(error.config.method === 'post' && /\/api\/me\/?$/.test(error.config.url))) {
           // the token must have expired. Log out.
+          // TODO: define event in this appliation
           event.emit('logout')
         }
       }

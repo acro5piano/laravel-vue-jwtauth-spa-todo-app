@@ -8,6 +8,10 @@
             <div class="panel-body">
               <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
+              <div class="alert alert-danger" role="alert" v-if="show_alert">
+                {{ alert_message }}
+              </div>
+
               <div class="form-group">
                 <div class="col-md-6">
                   <input id="email" type="email" class="form-control"
@@ -74,11 +78,18 @@
         email: 'test@example.com',
         password: 'secret',
         users: [],
+        show_alert: false,
+        alert_message: '',
       }
     },
     methods: {
       login () {
-        userStore.login(this.email, this.password)
+        userStore.login(this.email, this.password, res => {
+          this.$router.push('/')
+        }, error => {
+          this.show_alert = true
+          this.alert_message = 'Wrong email or password.'
+        })
       },
       fetchUsers () {
         http.get('users', res => {

@@ -50,7 +50,9 @@
     },
     methods: {
       logout() {
-        userStore.logout()
+        userStore.logout( () => {
+          this.$router.push('/login')
+        })
       }
     }
   }

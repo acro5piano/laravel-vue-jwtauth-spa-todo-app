@@ -7,26 +7,26 @@ export default {
     authenticated: false,
   },
 
-  login (email, password) {
+  login (email, password, successCb = null, errorCb = null) {
     var login_param = {email: email, password: password}
     http.post('authenticate', login_param, res => {
-      const token = res.data.token
-      if (token) {
-        localStorage.setItem('jwt-token', token)
-      }
       this.state.user = res.data.user
       this.state.authenticated = true
-      this.router.push('/')
+      successCb()
+    }, error => {
+      errorCb()
     })
   },
 
   // To log out, we just need to remove the token
-  logout () {
+  // TODO: delegate to http service
+  // TODO: create `event.emit(user:logout)`
+  logout (successCb = null, errorCb = null) {
     http.get('logout', () => {
-      localStorage.removeItem('id_token')
+      localStorage.removeItem('jwt-token')
       this.state.authenticated = false
-      this.router.push('/login')
-    })
+      successCb()
+    }, errorCb)
   },
 
   setCurrentUser () {
@@ -39,8 +39,7 @@ export default {
   /**
    * Init the service.
    */
-  init (router) {
-    this.router = router
+  init () {
     this.setCurrentUser()
   }
 }

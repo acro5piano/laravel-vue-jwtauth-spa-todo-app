@@ -15,6 +15,6 @@ const app = new Vue({
   router,
   created () {
     http.init()
-    userStore.init(router)
+    userStore.init()
   },
 }).$mount('#app')
