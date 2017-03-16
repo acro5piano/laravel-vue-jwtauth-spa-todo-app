@@ -20,7 +20,7 @@ class TaskController extends Controller
     {
         $user = JWTAuth::parseToken()->authenticate();
         // eval(\Psy\Sh());
-        return $user->tasks()->create($request->only('title'))->fresh();
+        return $user->tasks()->create($request->only('name'))->fresh();
     }
 
     public function destroy($id)

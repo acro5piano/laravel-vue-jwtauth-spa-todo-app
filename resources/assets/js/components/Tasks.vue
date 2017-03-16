@@ -6,10 +6,10 @@
 
       <ul v-for="task in tasks">
         <li v-if="task.is_done">
-          <strike> {{ task.title }} </strike>
+          <strike> {{ task.name }} </strike>
         </li>
         <li v-else>
-          {{ task.title }}
+          {{ task.name }}
         </li>
         <button @click="completeTask(task)" class="btn btn-sm btn-success" v-if="task.is_done">Undo</button>
         <button @click="completeTask(task)" class="btn btn-sm btn-success" v-else>Done</button>
@@ -22,8 +22,8 @@
           {{ alert_message }}
         </div>
         <input type="text" class="form-control"
-            v-model="title" @keyup.enter="addTask" placeholder="new task...">
-        <button class="btn btn-primary" disabled="disabled" v-if="title === ''">
+            v-model="name" @keyup.enter="addTask" placeholder="new task...">
+        <button class="btn btn-primary" disabled="disabled" v-if="name === ''">
           Add task
         </button>
         <button class="btn btn-primary" @click='addTask' v-else>
@@ -55,7 +55,7 @@
       return {
         userState: userStore.state,
         tasks: [],
-        title: '',
+        name: '',
         show_alert: false,
         alert_message: '',
       }
@@ -68,14 +68,14 @@
         })
       },
       addTask () {
-        if (this.title === '') {
+        if (this.name === '') {
           this.show_alert = true
           this.alert_message = 'Task name should not be blank.'
           return false
         }
-        http.post('tasks', {title: this.title}, res => {
+        http.post('tasks', {name: this.name}, res => {
           this.tasks[res.data.id] = res.data
-          this.title = ''
+          this.name = ''
           this.show_alert = false
           this.alert_message = ''
         })
