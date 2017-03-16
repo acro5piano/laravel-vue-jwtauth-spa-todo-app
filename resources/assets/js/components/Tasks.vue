@@ -13,6 +13,7 @@
         </li>
         <button @click="completeTask(task)" class="btn btn-sm btn-success" v-if="task.is_done">Undo</button>
         <button @click="completeTask(task)" class="btn btn-sm btn-success" v-else>Done</button>
+
         <button @click="removeTask(task)" class="btn btn-sm btn-danger">Remove</button>
       </ul>
 
@@ -21,8 +22,13 @@
           {{ alert_message }}
         </div>
         <input type="text" class="form-control"
-            v-model="title" @keyup.enter="addTask">
-        <button class="btn btn-primary" @click='addTask'>Add task</button>
+            v-model="title" @keyup.enter="addTask" placeholder="new task...">
+        <button class="btn btn-primary" disabled="disabled" v-if="title === ''">
+          Add task
+        </button>
+        <button class="btn btn-primary" @click='addTask' v-else>
+          Add task
+        </button>
       </div>
     </div>
 
