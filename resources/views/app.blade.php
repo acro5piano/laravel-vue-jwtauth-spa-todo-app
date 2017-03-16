@@ -9,9 +9,9 @@
 
         <!-- TODO: アセットちゃんとやる -->
         @if (env('APP_ENV') === 'production')
-            <link rel="stylesheet" href="dist/css/app.css"></script>
+            <link rel="stylesheet" href="dist/css/app.css">
         @else
-            <link rel="stylesheet" href="css/app.css"></script>
+            <link rel="stylesheet" href="css/app.css">
         @endif
 
         <script>
