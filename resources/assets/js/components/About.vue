@@ -1,6 +1,6 @@
 <template>
   <div>
-    This page describe who we are.
+    This page describes who we are.
     <div v-html='content'></div>
   </div>
 </template>
