@@ -24,7 +24,8 @@
       event.on('spinner:stop',  () => this.loading = false)
     },
     components: {
-      ClipLoader
+      ClipLoader,
+      navbar: require('./components/Navbar.vue')
     },
     data () {
       return {

@@ -7,8 +7,6 @@ import event from './utils/event'
 
 require('bootstrap-sass')
 
-Vue.component('navbar', require('./components/Navbar.vue'))
-
 const app = new Vue({
   router,
   created () {
