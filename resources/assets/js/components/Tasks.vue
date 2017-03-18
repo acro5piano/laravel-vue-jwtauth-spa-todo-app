@@ -48,9 +48,6 @@
     mounted() {
       this.fetchTasks()
     },
-    components: {
-      PulseLoader
-    },
     data() {
       return {
         userState: userStore.state,

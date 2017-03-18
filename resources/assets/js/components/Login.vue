@@ -6,12 +6,11 @@
           <div class="panel panel-default">
             <div class="panel-heading">Login</div>
             <div class="panel-body">
-              <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
               <div class="alert alert-danger" role="alert" v-if="show_alert">
                 {{ alert_message }}
               </div>
 
+              <label for="email" class="col-md-4 control-label">E-Mail Address</label>
               <div class="form-group">
                 <div class="col-md-6">
                   <input id="email" type="email" class="form-control"
