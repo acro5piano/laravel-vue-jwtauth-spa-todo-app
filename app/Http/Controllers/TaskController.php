@@ -9,7 +9,6 @@ use App\User;
 
 class TaskController extends Controller
 {
-    // public function index(User $user)
     public function index()
     {
         $user = JWTAuth::parseToken()->authenticate();
@@ -19,7 +18,6 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $user = JWTAuth::parseToken()->authenticate();
-        // eval(\Psy\Sh());
         return $user->tasks()->create($request->only('name'))->fresh();
     }
 
