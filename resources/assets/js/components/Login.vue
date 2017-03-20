@@ -92,8 +92,8 @@
       },
       fetchUsers () {
         http.get('users', res => {
-          this.users = res.data.slice(0, 5)
-          this.email = res.data[0].email
+          this.users = res.data.users
+          this.email = this.users[0].email
         })
       }
     }
