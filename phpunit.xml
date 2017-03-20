@@ -27,5 +27,8 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+
+        <!-- 追加 -->
+        <env name="DB_DATABASE" value=":memory:"/>
     </php>
 </phpunit>

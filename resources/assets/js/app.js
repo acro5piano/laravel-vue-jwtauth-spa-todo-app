@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import http from './services/http.js'
-import userStore from './stores/user'
+import userStore from './stores/userStore'
 import router from './router'
 import event from './utils/event'
 

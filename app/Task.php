@@ -13,7 +13,6 @@ class Task extends Model
         'is_done' => 'boolean',
     ];
 
-
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use JWTAuth;
 use Illuminate\Http\Request;
 use App\Task;
-use App\User;
 
 class TaskController extends Controller
 {
     public function index()
     {
-        $user = JWTAuth::parseToken()->authenticate();
+        $user = \JWTAuth::parseToken()->authenticate();
         return $user->tasks()->get()->keyBy('id');
     }
 
     public function store(Request $request)
     {
-        $user = JWTAuth::parseToken()->authenticate();
+        $user = \JWTAuth::parseToken()->authenticate();
         return $user->tasks()->create($request->only('name'))->fresh();
     }
 

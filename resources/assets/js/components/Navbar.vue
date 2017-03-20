@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  import userStore from '../stores/user'
+  import userStore from '../stores/userStore'
 
   export default {
     data (){
