@@ -18,8 +18,8 @@
       </ul>
 
       <div class="form-group">
-        <div class="alert alert-danger" role="alert" v-if="show_alert">
-          {{ alert_message }}
+        <div class="alert alert-danger" role="alert" v-if="showAlert">
+          {{ alertMessage }}
         </div>
         <input type="text" class="form-control"
             v-model="name" @keyup.enter="addTask" placeholder="new task...">
@@ -53,8 +53,8 @@
         userState: userStore.state,
         tasks: [],
         name: '',
-        show_alert: false,
-        alert_message: '',
+        showAlert: false,
+        alertMessage: '',
       }
     },
     methods: {
@@ -66,15 +66,15 @@
       },
       addTask () {
         if (this.name === '') {
-          this.show_alert = true
-          this.alert_message = 'Task name should not be blank.'
+          this.showAlert = true
+          this.alertMessage = 'Task name should not be blank.'
           return false
         }
         http.post('tasks', {name: this.name}, res => {
           this.tasks[res.data.id] = res.data
           this.name = ''
-          this.show_alert = false
-          this.alert_message = ''
+          this.showAlert = false
+          this.alertMessage = ''
         })
       },
       completeTask (task) {

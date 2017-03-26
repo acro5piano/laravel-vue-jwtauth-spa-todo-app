@@ -6,8 +6,8 @@
           <div class="panel panel-default">
             <div class="panel-heading">Login</div>
             <div class="panel-body">
-              <div class="alert alert-danger" role="alert" v-if="show_alert">
-                {{ alert_message }}
+              <div class="alert alert-danger" role="alert" v-if="showAlert">
+                {{ alertMessage }}
               </div>
 
               <div class="form-group">
@@ -77,8 +77,8 @@
         email: 'test@example.com',
         password: 'secret',
         users: [],
-        show_alert: false,
-        alert_message: '',
+        showAlert: false,
+        alertMessage: '',
       }
     },
     methods: {
@@ -86,8 +86,8 @@
         userStore.login(this.email, this.password, res => {
           this.$router.push('/')
         }, error => {
-          this.show_alert = true
-          this.alert_message = 'Wrong email or password.'
+          this.showAlert = true
+          this.alertMessage = 'Wrong email or password.'
         })
       },
       fetchUsers () {
